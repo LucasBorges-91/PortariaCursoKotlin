@@ -13,13 +13,11 @@ class Console private constructor() {
 
                     if ( ret == null || ret <= 0 ) {
                         println( "Valor inválido! ")
-                    } else {
-                        println( "Valor inválido! ")
                     }
                 }
             } while ( ret == null || ret <= 0 )
 
-            return 0
+            return ret
         }
 
         fun readString ( msg: String ): String {

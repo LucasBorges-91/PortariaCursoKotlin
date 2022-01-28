@@ -1,10 +1,11 @@
 package control
 
-import business.InviteBusiness
+import business.GuestBusiness
+import entity.Guest
 
 class Lobby {
 
-    private val inviteBusiness = InviteBusiness()
+    private val guestBusiness = GuestBusiness()
 
     init {
         println( "Portaria inicializada" )
@@ -12,22 +13,23 @@ class Lobby {
     }
 
     fun controle(): String {
-        val idade = Console.readInt( "Qual sua idade?" )
-        if ( idade < 18 ) {
+        val age = Console.readInt( "Qual sua idade?" )
+        val guest = Guest( age = age )
+        if ( !guestBusiness.major( guest ) ) {
              return "Negado. Menores de idade não são permitidos!"
-
         }
 
-        val typeInvite = Console.readString( "Qual é o tipo de convite?" )
-        if ( !inviteBusiness.typeValidate( typeInvite ) ) {
+        guest.type = Console.readString( "Qual é o tipo de convite?" )
+        if ( !guestBusiness.typeValidate( guest.type ) ) {
             return "Negado. Convite inválido!"
         }
 
-        val codeInvite = Console.readString( "Qual é o código do convite?" )
-        if ( !inviteBusiness.codeValidate( codeInvite, typeInvite ) ) {
+        guest.code = Console.readString( "Qual é o código do convite?" )
+
+        if ( !guestBusiness.guestValidate( guest ) ) {
             return "Negado. Convite inválido!"
         }
 
-        return "TODO!"
+        return "Welcome"
     }
 }
