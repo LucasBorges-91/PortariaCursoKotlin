@@ -1,3 +1,5 @@
-fun main() {
+import control.Lobby
 
+fun main() {
+    Lobby()
 }
